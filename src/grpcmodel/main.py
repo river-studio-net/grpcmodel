@@ -74,7 +74,6 @@ from ._compat import (  # type: ignore[attr-defined]
     SQLModelConfig,
     Undefined,
     UndefinedType,
-    _calculate_keys,
     finish_init,
     get_annotations,
     get_config_value,
@@ -598,7 +597,7 @@ class GRPCModelMetaclass(ModelMetaclass, DeclarativeMeta):
                             if isinstance(extra, dict):
                                 provided_fdesc = extra.get("grpc_descriptor")
                     else:
-                        provided_fdesc = getattr(getattr(finfo, "field_info", finfo), "grpc_descriptor", None)
+                        raise NotImplementedError("Pydantic v1 is not supported")
                     seeded_label = False
                     seeded_type = False
                     if provided_fdesc is not None:
@@ -711,8 +710,7 @@ class GRPCModelMetaclass(ModelMetaclass, DeclarativeMeta):
                                     if IS_PYDANTIC_V2:
                                         setattr(finfo, "grpc_descriptor", fdesc)
                                     else:
-                                        target = getattr(finfo, "field_info", finfo)
-                                        setattr(target, "grpc_descriptor", fdesc)
+                                        raise NotImplementedError("Pydantic v1 is not supported")
                         except Exception:
                             pass
                 except Exception:
@@ -828,7 +826,7 @@ def get_sqlalchemy_type(field: Any) -> Any:
     if IS_PYDANTIC_V2:
         field_info = field
     else:
-        field_info = field.field_info
+        raise NotImplementedError("Pydantic v1 is not supported")
     sa_type = getattr(field_info, "sa_type", Undefined)  # noqa: B009
     if sa_type is not Undefined:
         return sa_type
@@ -885,7 +883,7 @@ def get_column_from_field(field: Any) -> Column:  # type: ignore
     if IS_PYDANTIC_V2:
         field_info = field
     else:
-        field_info = field.field_info
+        raise NotImplementedError("Pydantic v1 is not supported")
     sa_column = getattr(field_info, "sa_column", Undefined)
     if isinstance(sa_column, Column):
         return sa_column
@@ -961,9 +959,7 @@ class GRPCModel(BaseModel, Message, metaclass=GRPCModelMetaclass, registry=defau
     if IS_PYDANTIC_V2:
         model_config = SQLModelConfig(from_attributes=True)
     else:
-
-        class Config:
-            orm_mode = True
+        raise NotImplementedError("Pydantic v1 is not supported")
 
     def __new__(cls, *args: Any, **kwargs: Any) -> Any:
         new_object = super().__new__(cls)
@@ -1080,14 +1076,7 @@ class GRPCModel(BaseModel, Message, metaclass=GRPCModelMetaclass, registry=defau
                 **extra_kwargs,
             )
         else:
-            return super().dict(
-                include=include,
-                exclude=exclude,
-                by_alias=by_alias or False,
-                exclude_unset=exclude_unset,
-                exclude_defaults=exclude_defaults,
-                exclude_none=exclude_none,
-            )
+            raise NotImplementedError("Pydantic v1 is not supported")
 
     @deprecated(
         """
@@ -1137,33 +1126,8 @@ class GRPCModel(BaseModel, Message, metaclass=GRPCModelMetaclass, registry=defau
         cls: Type[_TGRPCModel], obj: Any, update: Optional[Dict[str, Any]] = None
     ) -> _TGRPCModel:
         if not IS_PYDANTIC_V2:
-            obj = cls._enforce_dict_if_root(obj)  # type: ignore[attr-defined] # noqa
+            raise NotImplementedError("Pydantic v1 is not supported")
         return cls.model_validate(obj, update=update)
-
-    # From Pydantic, override to only show keys from fields, omit SQLAlchemy attributes
-    @deprecated(
-        """
-        🚨 You should not access `obj._calculate_keys()` directly.
-
-        It is only useful for Pydantic v1.X, you should probably upgrade to
-        Pydantic v2.X.
-        """,
-        category=None,
-    )
-    def _calculate_keys(
-        self,
-        include: Optional[Mapping[Union[int, str], Any]],
-        exclude: Optional[Mapping[Union[int, str], Any]],
-        exclude_unset: bool,
-        update: Optional[Dict[str, Any]] = None,
-    ) -> Optional[AbstractSet[str]]:
-        return _calculate_keys(
-            self,
-            include=include,
-            exclude=exclude,
-            exclude_unset=exclude_unset,
-            update=update,
-        )
 
     def grpcmodel_update(
         self: _TGRPCModel,
