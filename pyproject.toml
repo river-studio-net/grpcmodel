@@ -4,19 +4,17 @@ build-backend = "uv_build"
 
 [project]
 name = "grpcmodel"
-dynamic = ["version"]
+version = "0.0.1"
 description = "gRPCModel, gRPC models and schemas in Python, designed for simplicity, compatibility, and robustness."
 readme = "README.md"
 requires-python = ">=3.13"
 authors = [
     { name = "River Studio", email = "git@river-studio.net" },
 ]
-version = "0.0.1"
 
 classifiers = [
     "Development Status :: 4 - Beta",
     "Framework :: AsyncIO",
-    "Framework :: gRPC",
     "Intended Audience :: Developers",
     "Intended Audience :: Science/Research",
     "Intended Audience :: System Administrators",
