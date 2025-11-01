@@ -8,12 +8,11 @@ from unittest.mock import patch
 
 import pytest
 from pydantic import BaseModel
-from sqlmodel import SQLModel
-from sqlmodel._compat import IS_PYDANTIC_V2
-from sqlmodel.main import default_registry
+from grpcmodel import SQLModel
+from grpcmodel._compat import IS_PYDANTIC_V2
+from grpcmodel.main import default_registry
 
 top_level_path = Path(__file__).resolve().parent.parent
-docs_src_path = top_level_path / "docs_src"
 
 
 @pytest.fixture(autouse=True)
@@ -41,7 +40,7 @@ def coverage_run(*, module: str, cwd: Union[str, Path]) -> subprocess.CompletedP
             "coverage",
             "run",
             "--parallel-mode",
-            "--source=docs_src,tests,sqlmodel",
+            "--source=tests,grpcmodel",
             "-m",
             module,
         ],

@@ -3,7 +3,7 @@ import importlib
 import pytest
 from sqlalchemy import create_mock_engine
 from sqlalchemy.sql.type_api import TypeEngine
-from sqlmodel import SQLModel
+from grpcmodel import SQLModel
 
 from . import test_enums_models
 from .conftest import needs_pydanticv1, needs_pydanticv2

@@ -1,5 +1,5 @@
 import pytest
-from sqlmodel import SQLModel
+from grpcmodel import SQLModel
 
 
 class Item(SQLModel):

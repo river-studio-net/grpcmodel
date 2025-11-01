@@ -1,7 +1,7 @@
 from typing import Optional
 
 import pytest
-from sqlmodel import Field, Session, SQLModel, create_engine
+from grpcmodel import Field, Session, SQLModel, create_engine
 
 
 def test_query(clear_sqlmodel):

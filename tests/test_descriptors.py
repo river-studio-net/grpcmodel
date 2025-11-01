@@ -2,7 +2,7 @@ from typing import List, Optional
 
 import pytest
 from google.protobuf import descriptor_pb2, descriptor_pool
-from sqlmodel import Field, SQLModel
+from grpcmodel import Field, SQLModel
 
 
 def _build_descriptor(*, pkg: str, filename: str, msg_name: str, fields: List[tuple]):

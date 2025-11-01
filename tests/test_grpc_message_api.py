@@ -2,7 +2,7 @@ from typing import List, Optional
 
 import pytest
 from google.protobuf import struct_pb2
-from sqlmodel import Field, SQLModel
+from grpcmodel import Field, SQLModel
 
 
 class Thing(SQLModel):

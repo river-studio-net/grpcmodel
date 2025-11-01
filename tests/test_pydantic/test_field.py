@@ -3,7 +3,7 @@ from typing import Optional, Union
 
 import pytest
 from pydantic import ValidationError
-from sqlmodel import Field, SQLModel
+from grpcmodel import Field, SQLModel
 from typing_extensions import Literal
 
 

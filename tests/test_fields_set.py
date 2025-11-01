@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 
-from sqlmodel import Field, SQLModel
-from sqlmodel._compat import get_fields_set
+from grpcmodel import Field, SQLModel
+from grpcmodel._compat import get_fields_set
 
 
 def test_fields_set():

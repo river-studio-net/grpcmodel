@@ -2,7 +2,7 @@ from typing import Optional
 
 import pytest
 from pydantic.error_wrappers import ValidationError
-from sqlmodel import SQLModel
+from grpcmodel import SQLModel
 
 from .conftest import needs_pydanticv1, needs_pydanticv2
 

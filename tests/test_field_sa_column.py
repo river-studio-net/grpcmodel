@@ -2,7 +2,7 @@ from typing import Optional
 
 import pytest
 from sqlalchemy import Column, Integer, String
-from sqlmodel import Field, SQLModel
+from grpcmodel import Field, SQLModel
 
 
 def test_sa_column_takes_precedence() -> None:

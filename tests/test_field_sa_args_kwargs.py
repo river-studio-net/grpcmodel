@@ -1,7 +1,7 @@
 from typing import Optional
 
 from sqlalchemy import ForeignKey
-from sqlmodel import Field, SQLModel, create_engine
+from grpcmodel import Field, SQLModel, create_engine
 
 
 def test_sa_column_args(clear_sqlmodel, caplog) -> None:

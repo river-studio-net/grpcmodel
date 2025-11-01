@@ -48,7 +48,7 @@ parallel = true
 data_file = "coverage/.coverage"
 source = [
     "tests",
-    "sqlmodel"
+    "grpcmodel"
 ]
 context = '${CONTEXT}'
 dynamic_context = "test_function"
@@ -69,7 +69,7 @@ show_contexts = true
 
 [tool.mypy]
 strict = true
-exclude = "sqlmodel.sql._expression_select_gen"
+exclude = "grpcmodel.sql._expression_select_gen"
 
 [[tool.mypy.overrides]]
 module = "docs_src.*"
@@ -98,7 +98,7 @@ ignore = [
 # "__init__.py" = ["F401"]
 
 [tool.ruff.lint.isort]
-known-third-party = ["sqlmodel", "sqlalchemy", "pydantic", "fastapi"]
+known-third-party = ["grpcmodel", "sqlalchemy", "pydantic", "fastapi"]
 
 [tool.ruff.lint.pyupgrade]
 # Preserve types, even if a file imports `from __future__ import annotations`.

@@ -2,7 +2,7 @@ from typing import Optional
 
 import pytest
 from sqlalchemy.exc import IntegrityError
-from sqlmodel import Field, Session, SQLModel, create_engine
+from grpcmodel import Field, Session, SQLModel, create_engine
 
 
 def test_nullable_fields(clear_sqlmodel, caplog):

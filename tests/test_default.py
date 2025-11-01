@@ -1,4 +1,4 @@
-from sqlmodel.default import Default
+from grpcmodel.default import Default
 
 
 def test_default_bool() -> None:
