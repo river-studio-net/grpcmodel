@@ -1,7 +1,7 @@
 import enum
 import uuid
 
-from sqlmodel import Field, SQLModel
+from grpcmodel import Field, SQLModel
 
 
 class MyEnum1(str, enum.Enum):

@@ -1,7 +1,7 @@
 from typing import Any, List, Union
 
 import pytest
-from sqlmodel import Field, Relationship, SQLModel
+from grpcmodel import Field, Relationship, SQLModel
 
 
 def test_ondelete_requires_nullable(clear_sqlmodel: Any) -> None:

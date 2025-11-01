@@ -2,7 +2,7 @@ from typing import List, Optional
 
 import pytest
 from sqlalchemy.orm import relationship
-from sqlmodel import Field, Relationship, SQLModel
+from grpcmodel import Field, Relationship, SQLModel
 
 
 def test_sa_relationship_no_args() -> None:

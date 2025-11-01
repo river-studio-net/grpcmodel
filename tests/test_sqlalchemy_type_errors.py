@@ -1,7 +1,7 @@
 from typing import Any, Dict, List, Optional, Union
 
 import pytest
-from sqlmodel import Field, SQLModel
+from grpcmodel import Field, SQLModel
 
 
 def test_type_list_breaks() -> None:

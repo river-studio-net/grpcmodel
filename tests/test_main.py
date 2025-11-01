@@ -3,7 +3,7 @@ from typing import List, Optional
 import pytest
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import RelationshipProperty
-from sqlmodel import Field, Relationship, Session, SQLModel, create_engine, select
+from grpcmodel import Field, Relationship, Session, SQLModel, create_engine, select
 
 
 def test_should_allow_duplicate_row_if_unique_constraint_is_not_passed(clear_sqlmodel):

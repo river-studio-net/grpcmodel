@@ -1,7 +1,7 @@
 import uuid
 from typing import Optional
 
-from sqlmodel import Field, Session, SQLModel, create_engine, select
+from grpcmodel import Field, Session, SQLModel, create_engine, select
 
 from tests.conftest import needs_pydanticv2
 

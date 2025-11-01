@@ -1,7 +1,7 @@
 from typing import Optional
 
-from sqlmodel import Field, Session, SQLModel, create_engine, select
-from sqlmodel.pool import StaticPool
+from grpcmodel import Field, Session, SQLModel, create_engine, select
+from grpcmodel.pool import StaticPool
 
 
 def test_fields() -> None:

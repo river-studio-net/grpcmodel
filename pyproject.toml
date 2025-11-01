@@ -1,15 +1,15 @@
 [build-system]
-requires = ["pdm-backend"]
-build-backend = "pdm.backend"
+requires = ["uv_build>=0.9.6,<0.10.0"]
+build-backend = "uv_build"
 
 [project]
-name = "sqlmodel"
-dynamic = ["version"]
-description = "SQLModel, SQL databases in Python, designed for simplicity, compatibility, and robustness."
+name = "grpcmodel"
+version = "0.0.1"
+description = "gRPCModel, gRPC models and schemas in Python, designed for simplicity, compatibility, and robustness."
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.13"
 authors = [
-    { name = "Sebastián Ramírez", email = "tiangolo@gmail.com" },
+    { name = "River Studio", email = "git@river-studio.net" },
 ]
 
 classifiers = [
@@ -20,11 +20,6 @@ classifiers = [
     "Intended Audience :: System Administrators",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
     "Topic :: Database",
@@ -37,48 +32,35 @@ classifiers = [
 
 dependencies = [
     "SQLAlchemy >=2.0.14,<2.1.0",
-    "pydantic >=1.10.13,<3.0.0",
+    "protobuf>=5.29.5",
+    "pydantic >=2.0.0,<3.0.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest >=7.0.1,<9.0.0",
+    "coverage[toml] >=6.2,<8.0",
+    "mypy ==1.18.2",
+    "ruff ==0.14.1",
+    "fastapi >=0.103.2",
+    "httpx ==0.28.1",
+    "dirty-equals ==0.9.0",
+    "jinja2 ==3.1.6",
+    "typing-extensions ==4.15.0",
 ]
 
 [project.urls]
-Homepage = "https://github.com/fastapi/sqlmodel"
-Documentation = "https://sqlmodel.tiangolo.com"
-Repository = "https://github.com/fastapi/sqlmodel"
-Issues = "https://github.com/fastapi/sqlmodel/issues"
-Changelog = "https://sqlmodel.tiangolo.com/release-notes/"
-
-[tool.pdm]
-version = { source = "file", path = "sqlmodel/__init__.py" }
-distribution = true
-
-[tool.pdm.build]
-source-includes = [
-    "tests/",
-    "docs_src/",
-    "requirements*.txt",
-    "scripts/",
-    "sqlmodel/sql/expression.py.jinja2",
-    ]
-
-[tool.tiangolo._internal-slim-build.packages.sqlmodel-slim.project]
-name = "sqlmodel-slim"
-
-[tool.tiangolo._internal-slim-build.packages.sqlmodel]
-# include-optional-dependencies = ["standard"]
-
-[tool.tiangolo._internal-slim-build.packages.sqlmodel.project]
-optional-dependencies = {}
-
-# [tool.tiangolo._internal-slim-build.packages.sqlmodel.project.scripts]
-# sqlmodel = "sqlmodel.cli:main"
+Homepage = "https://github.com/river-studio-net/grpcmodel"
+Documentation = "https://github.com/river-studio-net/grpcmodel?tab=readme-ov-file"
+Repository = "https://github.com/river-studio-net/grpcmodel"
+Issues = "https://github.com/river-studio-net/grpcmodel/issues"
+Changelog = "https://github.com/river-studio-net/grpcmodel/releases"
 
 [tool.coverage.run]
 parallel = true
 data_file = "coverage/.coverage"
 source = [
-    "docs_src",
-    "tests",
-    "sqlmodel"
+    "grpcmodel"
 ]
 context = '${CONTEXT}'
 dynamic_context = "test_function"
@@ -90,8 +72,11 @@ sort = "-Cover"
 exclude_lines = [
     "pragma: no cover",
     "@overload",
+    "@deprecated",
     'if __name__ == "__main__":',
     "if TYPE_CHECKING:",
+    "^import ",
+    "^from .* import",
 ]
 
 [tool.coverage.html]
@@ -99,7 +84,7 @@ show_contexts = true
 
 [tool.mypy]
 strict = true
-exclude = "sqlmodel.sql._expression_select_gen"
+exclude = "grpcmodel.sql._expression_select_gen"
 
 [[tool.mypy.overrides]]
 module = "docs_src.*"
@@ -128,7 +113,7 @@ ignore = [
 # "__init__.py" = ["F401"]
 
 [tool.ruff.lint.isort]
-known-third-party = ["sqlmodel", "sqlalchemy", "pydantic", "fastapi"]
+known-third-party = ["grpcmodel", "sqlalchemy", "pydantic", "fastapi"]
 
 [tool.ruff.lint.pyupgrade]
 # Preserve types, even if a file imports `from __future__ import annotations`.

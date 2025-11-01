@@ -2,7 +2,7 @@ from typing import Optional
 
 import pytest
 from pydantic import ValidationError
-from sqlmodel import Field, Session, SQLModel, create_engine, select
+from grpcmodel import Field, Session, SQLModel, create_engine, select
 
 
 def test_allow_instantiation_without_arguments(clear_sqlmodel):

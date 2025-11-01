@@ -2,7 +2,7 @@ from typing import Optional
 
 import pytest
 from pydantic import BaseModel
-from sqlmodel import Field, SQLModel
+from grpcmodel import Field, SQLModel
 
 
 def test_missing_sql_type():
