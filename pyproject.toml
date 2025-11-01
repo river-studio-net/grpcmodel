@@ -60,7 +60,6 @@ Changelog = "https://github.com/river-studio-net/grpcmodel/releases"
 parallel = true
 data_file = "coverage/.coverage"
 source = [
-    "tests",
     "grpcmodel"
 ]
 context = '${CONTEXT}'
@@ -73,6 +72,7 @@ sort = "-Cover"
 exclude_lines = [
     "pragma: no cover",
     "@overload",
+    "@deprecated",
     'if __name__ == "__main__":',
     "if TYPE_CHECKING:",
 ]
